@@ -16,6 +16,12 @@ const appRoutes: Routes = [
     component: HeroListComponent
   },
   {
+    path: '',
+    // This is an absolute redirect, as the redirect to property starts with '/' in it's path '/heroes'...
+    redirectTo: '/heroes',
+    pathMatch: 'full'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }
