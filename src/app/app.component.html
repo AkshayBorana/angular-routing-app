@@ -600,21 +600,4 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-
-<!--  Angular Router.... -->
-<h3>Angular Router works</h3>
-<nav>
-  <ul>
-    <li>
-      <a routerLink="/first-component" routerLinkActive #rla="routerLinkActive"
-        [routerLinkActive]="['class4', 'class3']">First Component
-        {{rla.isActive ? 'displaying 1st component' : 'displaying 2st component'}}</a>
-    </li>
-    <li>
-      <a routerLink="/second-component" [routerLinkActive]="['class1', 'class2']">Second Component</a>
-    </li>
-  </ul>
-</nav>
-
-
 <router-outlet></router-outlet>
