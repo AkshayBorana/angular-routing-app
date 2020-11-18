@@ -6,11 +6,13 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 const heroesRoutes: Routes = [
   {
     path: 'heroes',
-    component: HeroListComponent
+    component: HeroListComponent,
+    data: { animation: 'heroes' }
   },
   {
     path: 'hero/:id',
-    component: HeroDetailComponent
+    component: HeroDetailComponent,
+    data: { animation: 'hero' }
   }
 ];
 

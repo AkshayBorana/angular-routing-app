@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Hero } from '../hero';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+
+import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-   hero: Hero;
+  hero$: Observable<Hero>;
 
   constructor(
     private router: Router,
@@ -19,11 +21,9 @@ export class HeroDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.hero = this.route.paramMap.pipe(
-        switchMap((params: Params) =>
-          this.service.getHeroes(params.get('id'))
-        )
-      )
+    this.hero$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.service.getHero(params.get('id')))
+    );
   }
 
   goBackToHeroes(hero: Hero): void {

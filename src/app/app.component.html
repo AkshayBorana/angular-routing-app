@@ -4,4 +4,7 @@
   <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
 </nav>
 
-<router-outlet></router-outlet>
+<!--  For router animation wrapping router-outlet within an element... -->
+<div [@routeAnimation]="getAnimationData(routerOutlet)">
+  <router-outlet #routerOutlet="outlet"></router-outlet>
+</div>

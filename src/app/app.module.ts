@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
@@ -12,14 +13,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const Components = [
   AppComponent,
   CrisisListComponent,
-  // HeroListComponent,
   PageNotFoundComponent
 ];
-const Modules = [HeroesModule];
+const Modules = [BrowserModule, FormsModule, BrowserAnimationsModule, HeroesModule];
 
 @NgModule({
   declarations: [...Components],
-  imports: [BrowserModule, FormsModule, ...Modules, AppRoutingModule],
+  imports: [...Modules, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
