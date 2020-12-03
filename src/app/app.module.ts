@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HeroesModule } from './heroes/heroes.module';
 import { CrisesModule } from './crisis-center/crises.module';
+import { AdminModule } from './admin/admin.module';
 
 import { AppComponent } from './app.component';
 import { CrisisListComponent } from './crisis-list/crisis-list.component';
@@ -24,6 +25,7 @@ const Modules = [
   BrowserAnimationsModule,
   HeroesModule,
   CrisesModule,
+  AdminModule,
   AppRoutingModule
 ];
 
