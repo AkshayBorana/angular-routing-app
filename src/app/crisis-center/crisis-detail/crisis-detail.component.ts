@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Router, ActivatedRoute, ParamMap, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
 import { Crisis } from '../crisis';
-import { CrisisService } from '../crisis.service';
+import { DialogService } from '../../dialog.service';
 
 @Component({
   selector: 'app-crisis-detail',
@@ -13,13 +12,22 @@ import { CrisisService } from '../crisis.service';
   styleUrls: ['./crisis-detail.component.scss']
 })
 export class CrisisDetailComponent implements OnInit {
+  editName: string;
+  crisis: Crisis;
+
   constructor(
-    private crisisService: CrisisService,
+    private dialogService: DialogService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Fetch data from route resolver...
+    this.route.data.subscribe((data: { crisis: Crisis }) => {
+      this.editName = data.crisis.name;
+      this.crisis = data.crisis;
+    });
+  }
 
   gotoCrises(): void {
     this.router.navigate(['../', { id: 'crisisId', foo: 'foo' }], {
@@ -31,8 +39,15 @@ export class CrisisDetailComponent implements OnInit {
     this.gotoCrises();
   }
 
+  canDeactivate(): Observable<boolean> | boolean {
+    // If crisis not changed then let user navigate..
+    if (!this.crisis || this.crisis.name === this.editName) { return true; }
+    // if changed open up a pop-up modal and ask to save/discard chnanges..
+    return this.dialogService.confirm('Discard Changes');
+  }
+
   save(): void {
-    // this.crisis.name = this.editName;
+    this.crisis.name = this.editName;
     this.gotoCrises();
   }
 }

@@ -5,7 +5,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 const heroesRoutes: Routes = [
   {
-    path: 'heroes',
+    path: 'superheroes',
     component: HeroListComponent,
     data: { animation: 'heroes' }
   },
