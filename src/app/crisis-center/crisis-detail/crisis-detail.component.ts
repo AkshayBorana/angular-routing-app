@@ -26,4 +26,13 @@ export class CrisisDetailComponent implements OnInit {
       relativeTo: this.route
     });
   }
+
+  cancel(): void {
+    this.gotoCrises();
+  }
+
+  save(): void {
+    // this.crisis.name = this.editName;
+    this.gotoCrises();
+  }
 }

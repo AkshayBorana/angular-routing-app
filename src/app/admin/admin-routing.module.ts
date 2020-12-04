@@ -16,6 +16,7 @@ const adminRoutes: Routes = [
     children: [
       {
         path: '', // Note this is component-less routing....
+        canActivateChild: [AuthGuard],
         children: [
           {
             path: 'crises',
